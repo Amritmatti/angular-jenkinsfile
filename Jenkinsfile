@@ -12,6 +12,9 @@ properties(
         )
     ]
 )
+  agent {
+    docker 'circleci/node:9.3-stretch-browsers'
+  }
 node {
     stage('Checkout') {
         //disable to recycle workspace data to save time/bandwidth
