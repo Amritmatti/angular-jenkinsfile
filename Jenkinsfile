@@ -1,25 +1,12 @@
 pipeline {
-  agent {
-    docker { image 'node:latest' }
-  }
-  stages {
-    stage('Install') {
-      steps { sh 'npm install' }
+    agent {
+        docker { image 'node:16.13.1-alpine' }
     }
-
-    stage('Test') {
-      parallel {
-        stage('Static code analysis') {
-            steps { sh 'npm run-script lint' }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+            }
         }
-        stage('Unit tests') {
-            steps { sh 'npm run-script test' }
-        }
-      }
     }
-
-    stage('Build') {
-      steps { sh 'npm run-script build' }
-    }
-  }
 }
