@@ -1,21 +1,17 @@
+#!groovy
+
 pipeline {
-    agent none
-    stages {
-        stage('Back-end') {
-            agent {
-                docker { image 'node:latest' }
-            }
-            steps {
-                sh 'node --version'
-            }
+	agent none
+  stages {
+  	stage('Maven Install') {
+    	agent {
+      	docker {
+        	image 'maven:3.5.0'
         }
-        stage('Front-end') {
-            agent {
-                docker { image 'node:16.13.1' }
-            }
-            steps {
-                sh 'node --version'
-            }
-        }
+      }
+      steps {
+      	sh 'mvn clean install'
+      }
     }
+  }
 }
