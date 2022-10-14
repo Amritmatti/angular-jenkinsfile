@@ -12,8 +12,9 @@ properties(
         )
     ]
 )
+pipeline {
   agent {
-    docker 'circleci/node:9.3-stretch-browsers'
+    docker { image 'node:latest' }
   }
 node {
     stage('Checkout') {
